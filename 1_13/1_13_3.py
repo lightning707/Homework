@@ -3,6 +3,10 @@ class Product:
         self.type_ = type_
         self.name = name
         self.price = price
+        self.amount = 0
+
+    def __repr__(self):
+        return f"> Type: {self.type_}, name: {self.name}, price:{self.price}, amount:{self.amount} <"
 
 
 class ProductStore:
@@ -12,13 +16,13 @@ class ProductStore:
         self.income = 0
 
     def add(self, product, amount):
-        if amount % 1 != 0:
+        if not isinstance(amount, int):
             raise ValueError("Cannot add a non-integer amount of products")
         elif amount <= 0:
             raise ValueError("Cannot add a non-positive amount of products")
         else:
             product.price *= 1 + (self.price_premium / 100)
-            product.amount = amount
+            product.amount += amount
             self.product_list.append(product)
 
     def set_discount(self, identifier, percent, identifier_type="name"):
@@ -53,7 +57,7 @@ class ProductStore:
     def get_product_info(self, product_name):
         for product in self.product_list:
             if product.name == product_name:
-                return tuple((product.name, product.amount))
+                return product.name, product.amount
 
 
 p = Product('Sport', 'Football T-Shirt', 100)
@@ -63,3 +67,4 @@ s.add(p, 10)
 s.add(p2, 300)
 s.sell_product('Ramen', 10)
 assert s.get_product_info('Ramen') == ('Ramen', 290)
+print(s.get_all_products())
