@@ -1,6 +1,6 @@
 class Animal:
     def talk(self):
-        print("I am animal")
+        raise NotImplementedError("Talk method not implemented")
 
 
 class Dog(Animal):

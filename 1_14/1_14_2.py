@@ -53,7 +53,7 @@ class Book:
         self.name = name
         self.year = year
         self.author = author
-        self.book_count += 1
+        Book.book_count += 1
 
     def __repr__(self):
         return f"Book: {self.name}\n" \
@@ -64,9 +64,9 @@ class Book:
         return self.name + "|" + self.year + "|" + self.author
 
 
-
 library1 = Library("Lib")
 serega = Author("Sergey", "Ukraine", "1994")
 library1.new_book("Booook", 1234, serega)
 library1.new_book("ASDASDASD", 4567, serega)
 print(library1.group_by_author(serega))
+print(Book.book_count)
