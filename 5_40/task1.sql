@@ -54,7 +54,8 @@ SELECT (em.first_name || ' ' || em.last_name) as 'Full name', em.salary
 FROM employees em JOIN departments dp
 USING(department_id)
 JOIN locations loc
-USING(location_id);
+USING(location_id)
+WHERE loc.city = 'London';
 
 /*write a query in SQL to display the department name and the number
  of employees in each department*/
